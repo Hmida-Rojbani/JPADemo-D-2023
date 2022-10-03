@@ -28,8 +28,13 @@ public class ClientCtrl {
     @GetMapping("/clients/{id}")
     @ResponseBody
     public ClientEntity getClientById(@PathVariable("id") int clientId){
-        return clientService.getClientById(clientId);
+               return clientService.getClientById(clientId);
     }
 
+    @ExceptionHandler(IllegalArgumentException.class)
+    @ResponseBody
+    public String handleIllegalArgumentException(IllegalArgumentException e ){
+        return e.getMessage();
+    }
 
 }
