@@ -25,5 +25,11 @@ public class ClientCtrl {
         return clientService.getAllClients();
     }
 
+    @GetMapping("/clients/{id}")
+    @ResponseBody
+    public ClientEntity getClientById(@PathVariable("id") int clientId){
+        return clientService.getClientById(clientId);
+    }
+
 
 }

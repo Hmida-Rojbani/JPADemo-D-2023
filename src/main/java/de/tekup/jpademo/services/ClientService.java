@@ -19,4 +19,10 @@ public class ClientService {
     public List<ClientEntity> getAllClients(){
        return (List<ClientEntity>) clientRepository.findAll();
     }
+
+    public ClientEntity getClientById(int id){
+        return clientRepository
+                .findById(id)
+                .orElseThrow(()-> new IllegalArgumentException("Client ID not Found"));
+    }
 }
