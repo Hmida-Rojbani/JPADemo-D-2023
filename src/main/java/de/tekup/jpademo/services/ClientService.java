@@ -23,6 +23,6 @@ public class ClientService {
     public ClientEntity getClientById(int id){
         return clientRepository
                 .findById(id)
-                .orElseThrow(()-> new IllegalArgumentException("Client ID not Found"));
+                .orElseThrow(()-> new IllegalArgumentException("Client ID Not Found"));
     }
 }
