@@ -11,11 +11,11 @@ public class LocationEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
     private LocalDate dateDebut;
     private LocalDate dateRetour;
     private double prixJour;
-
+    @Transient
     private double prix;
-
+    @ManyToOne
+    private ClientEntity client;
 }
