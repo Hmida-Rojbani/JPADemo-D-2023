@@ -1,7 +1,7 @@
 package de.tekup.jpademo.controllers;
 
-import de.tekup.jpademo.entities.ClientEntity;
-import de.tekup.jpademo.services.ClientService;
+import de.tekup.jpademo.entities.VoitureEntity;
+import de.tekup.jpademo.services.VoitureService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -10,26 +10,26 @@ import java.util.List;
 
 @Controller
 @AllArgsConstructor
-public class ClientCtrl {
+public class VoitureCtrl {
 
-    private ClientService clientService;
+    private VoitureService voitureService;
     //@RequestMapping(path="/clients/save",method = RequestMethod.POST)
-    @PostMapping("/clients/save")
+    @PostMapping("/voitures/save")
     @ResponseBody
-    public ClientEntity saveClient(@RequestBody ClientEntity client){
-        return clientService.insertIntoDB(client);
+    public VoitureEntity saveVoiture(@RequestBody VoitureEntity voiture){
+        return voitureService.insertIntoDB(voiture);
     }
     //@RequestMapping(path="/clients",method = RequestMethod.GET)
-    @GetMapping("/clients")
+    @GetMapping("/voitures")
     @ResponseBody
-    public List<ClientEntity> getAllClient(){
-        return clientService.getAllClients();
+    public List<VoitureEntity> getAllVoitures(){
+        return voitureService.getAllVoitures();
     }
 
-    @GetMapping("/clients/{id}")
+    @GetMapping("/voitures/{id}")
     @ResponseBody
-    public ClientEntity getClientById(@PathVariable("id") int clientId){
-               return clientService.getClientById(clientId);
+    public VoitureEntity getVoitureById(@PathVariable("id") int voitureId){
+        return voitureService.getVoitureById(voitureId);
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
@@ -37,5 +37,4 @@ public class ClientCtrl {
     public String handleIllegalArgumentException(IllegalArgumentException e ){
         return e.getMessage();
     }
-
 }

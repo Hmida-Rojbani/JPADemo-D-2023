@@ -3,16 +3,17 @@ package de.tekup.jpademo.services;
 import de.tekup.jpademo.entities.ClientEntity;
 import de.tekup.jpademo.entities.LocationEntity;
 import de.tekup.jpademo.repos.LocationRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class LocationService {
-    @Autowired
+
     private LocationRepository locationRepository;
-    @Autowired
+
     private ClientService clientService;
 
     public LocationEntity saveLocation(LocationEntity location,int idClient){

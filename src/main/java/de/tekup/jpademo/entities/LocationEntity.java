@@ -9,7 +9,7 @@ import java.time.LocalDate;
 
 @Data
 @Entity
-@JsonIdentityInfo(property = "id",generator = ObjectIdGenerators.IntSequenceGenerator.class)
+@JsonIdentityInfo(property = "id",generator = ObjectIdGenerators.PropertyGenerator.class)
 public class LocationEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,4 +21,6 @@ public class LocationEntity {
     private double prix;
     @ManyToOne
     private ClientEntity client;
+    @ManyToOne
+    private VoitureEntity voiture;
 }
