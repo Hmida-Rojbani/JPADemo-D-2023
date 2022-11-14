@@ -10,6 +10,7 @@ import java.util.List;
 
 @Data
 @Entity
+@Table(name="voit_tbl")
 @JsonIdentityInfo(property = "id",generator = ObjectIdGenerators.PropertyGenerator.class)
 public class VoitureEntity {
     @Id

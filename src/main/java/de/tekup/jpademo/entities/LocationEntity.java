@@ -10,6 +10,7 @@ import java.time.temporal.ChronoUnit;
 
 @Data
 @Entity
+@Table(name="lct_tbl")
 @JsonIdentityInfo(property = "id",generator = ObjectIdGenerators.PropertyGenerator.class)
 public class LocationEntity {
     @Id
