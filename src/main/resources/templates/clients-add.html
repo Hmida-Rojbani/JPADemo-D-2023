@@ -21,6 +21,7 @@
 				<div class="row no-gutters">
 					<div class="col-md-6 offset-md-3 wrap-about ftco-animate">
                             <form action="/clients/ui/add" method="post" class="bg-light p-5 contact-form" th:object="${client}">
+                                <input type="text" class="form-control" placeholder="ID" required th:field="*{id}" hidden>
                                 <div class="form-group">
                                     <input type="text" class="form-control" placeholder="CIN" required th:field="*{cin}">
                                     <small style="color: darkred;" th:if="${#fields.hasErrors('cin')}" th:errors="*{cin}"> </small>

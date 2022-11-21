@@ -31,6 +31,7 @@ public class ViewClientCtrl {
     @PostMapping("/add")
     public String clientAddPost(@Valid @ModelAttribute("client") ClientEntity client,
                                 BindingResult result){
+
         if(result.hasErrors()){
             return "clients-add";
         }
@@ -45,8 +46,8 @@ public class ViewClientCtrl {
     }
 
     @GetMapping("/update/{id}")
-    public String updateClient(@PathVariable("id") int clientId){
-
-        return null;
+    public String updateClient(Model model,@PathVariable("id") int clientId){
+        model.addAttribute("client",clientService.getClientById(clientId));
+        return "clients-add";
     }
 }
