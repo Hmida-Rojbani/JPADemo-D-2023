@@ -1,11 +1,17 @@
 package de.tekup.jpademo.controllers;
 
+import de.tekup.jpademo.entities.ClientEntity;
 import de.tekup.jpademo.services.ClientService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/clients/ui")
@@ -17,5 +23,21 @@ public class ViewClientCtrl {
     public String clientDisplay(Model model){
         model.addAttribute("clients",clientService.getAllClients());
         return "clients-display";
+    }
+
+    @GetMapping("/add")
+    public String clientAdd(Model model){
+       model.addAttribute("client",new ClientEntity());
+        return "clients-add";
+    }
+
+    @PostMapping("/add")
+    public String clientAddPost(@Valid @ModelAttribute("client") ClientEntity client,
+                                BindingResult result){
+        if(result.hasErrors()){
+            return "clients-add";
+        }
+        clientService.insertIntoDB(client);
+        return "redirect:/clients/ui/display";
     }
 }
