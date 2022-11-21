@@ -43,4 +43,10 @@ public class ViewClientCtrl {
         clientService.deleteClient(clientId);
         return "redirect:/clients/ui/display";
     }
+
+    @GetMapping("/update/{id}")
+    public String updateClient(@PathVariable("id") int clientId){
+
+        return null;
+    }
 }
