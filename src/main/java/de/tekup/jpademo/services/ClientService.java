@@ -25,4 +25,8 @@ public class ClientService {
                 .findById(id)
                 .orElseThrow(()-> new IllegalArgumentException("Client ID not Found"));
     }
+
+    public void deleteClient(int clientId) {
+        clientRepository.deleteById(clientId);
+    }
 }

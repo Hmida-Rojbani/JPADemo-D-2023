@@ -31,6 +31,8 @@
                           <th scope="col">NOM</th>
                           <th scope="col">PRENOM</th>
                           <th scope="col">ADRESS</th>
+                          <th scope="col"></th>
+                          <th scope="col"></th>
                       </tr>
                       </thead>
                       <tbody>
@@ -40,6 +42,9 @@
                           <td th:text="${client.nom}">Otto</td>
                           <td th:text="${client.prenom}">Otto</td>
                           <td th:text="${client.adress}">@mdo</td>
+                          <td ><a th:href="@{'/clients/ui/delete/'+${client.id}}"><i class="ion-ios-trash"></i></a></td>
+                          <td ><a th:href="@{'/clients/ui/update/'+${client.id}}"><i class="ion-ios-create"></i></a></td>
+
                       </tr>
                       </tbody>
                   </table>

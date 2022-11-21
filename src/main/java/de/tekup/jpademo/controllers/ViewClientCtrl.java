@@ -6,10 +6,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -38,6 +35,12 @@ public class ViewClientCtrl {
             return "clients-add";
         }
         clientService.insertIntoDB(client);
+        return "redirect:/clients/ui/display";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteClient(@PathVariable("id") int clientId){
+        clientService.deleteClient(clientId);
         return "redirect:/clients/ui/display";
     }
 }
