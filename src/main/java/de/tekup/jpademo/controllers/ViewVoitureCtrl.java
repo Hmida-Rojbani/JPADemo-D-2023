@@ -1,5 +1,6 @@
 package de.tekup.jpademo.controllers;
 
+import de.tekup.jpademo.configs.FileUploadUtil;
 import de.tekup.jpademo.entities.ClientEntity;
 import de.tekup.jpademo.entities.VoitureEntity;
 import de.tekup.jpademo.services.VoitureService;
@@ -8,15 +9,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.nio.file.*;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -66,19 +66,13 @@ public class ViewVoitureCtrl {
         }
         voitureService.insertIntoDB(voiture);
         if (!multipartFile.isEmpty()){
-            String orgFileName = multipartFile.getOriginalFilename();
+            String orgFileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
             String ext = orgFileName.substring(orgFileName.lastIndexOf("."));
             String fileName = "voiture-"+voiture.getId()+ext;
-            String uploadFolder = "src/main/resources/static/uploads/voitures";
-            try {
-                Path path = Path.of(uploadFolder, fileName);
-                Files.write(path,multipartFile.getBytes());
-                voiture.setImagePath("/uploads/voitures/"+fileName);
-                voitureService.insertIntoDB(voiture);
-
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+            String uploadDir = "voitures-photos/";
+            FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+            voiture.setImagePath("/"+uploadDir+fileName);
+            voitureService.insertIntoDB(voiture);
         }
 
         return "redirect:/voitures/ui/";
