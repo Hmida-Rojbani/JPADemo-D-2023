@@ -13,7 +13,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 @Controller
-public class ViewCtrl implements ErrorController {
+public class ViewCtrl  {
     @GetMapping({"/","/index"})
     public String landingPage(Model model){
         String today = LocalDate.now()
@@ -27,7 +27,7 @@ public class ViewCtrl implements ErrorController {
         return "about";
     }
 
-    @RequestMapping("/error")
+    //@RequestMapping("/error")
     public String handleError(HttpServletRequest request) {
         Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
 

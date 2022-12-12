@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class ViewHandleError {
 
-    @ExceptionHandler(Exception.class)
+    //@ExceptionHandler(Exception.class)
     public String handleException(Exception e, Model model){
         model.addAttribute("errorCode","400");
         model.addAttribute("errorMsg",e.getMessage());
