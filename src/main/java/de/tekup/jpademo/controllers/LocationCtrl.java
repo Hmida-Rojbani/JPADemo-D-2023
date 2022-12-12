@@ -9,21 +9,20 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
+@RequestMapping("/api")
 @AllArgsConstructor
 public class LocationCtrl {
 
     private LocationService locationService;
 
     @PostMapping("/locations/add/client/{idClient}/voiture/{idVoiture}")
-    @ResponseBody
     public LocationEntity addLocation(@RequestBody LocationEntity location,
                               @PathVariable("idClient") int idClient, @PathVariable("idVoiture") int idVoiture){
         return locationService.saveLocation(location,idClient, idVoiture);
     }
 
     @GetMapping("/locations")
-    @ResponseBody
     public List<LocationEntity> getLocation(){
         return locationService.getAllLocations();
     }
