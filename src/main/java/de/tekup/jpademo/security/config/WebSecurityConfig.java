@@ -38,7 +38,7 @@ public class WebSecurityConfig  {
     private RsaKeyProperties rsaKeys;
     private PasswordEncoder bCryptPasswordEncoder;
 
-    //@Bean
+    @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf().disable()
                 .authorizeRequests()
@@ -60,6 +60,7 @@ public class WebSecurityConfig  {
 
 
     @Bean
+    @Order(1)
     public SecurityFilterChain jwtSecurityFilterChain(HttpSecurity http) throws Exception {
         return http.antMatcher("/api/**")//Security will be only for /api/**
                 .csrf(AbstractHttpConfigurer::disable)
